@@ -31,6 +31,21 @@ class Certificate(models.Model):
     description = models.TextField(blank=True, null=True)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    def save(self, *args, **kwargs):
+        if self.file and not self.hash:
+            self.file.seek(0)
+            self.hash = get_file_hash(self.file)
+            self.file.seek(0)
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"{self.document_type} — {self.student.get_full_name()} — {self.institution.name}"
+
+# institutions/models.py
+
+import hashlib
+
+def get_file_hash(file_field):
+    hasher = hashlib.sha256()
+    for chunk in file_field.chunks():
+        hasher.update(chunk)
+    return hasher.hexdigest()
