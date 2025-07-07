@@ -9,7 +9,7 @@ PRIVATE_KEY = os.getenv('PRIVATE_KEY')
 CONTRACT_ADDRESS = os.getenv('CONTRACT_ADDRESS')
 WALLET_ADDRESS = os.getenv('WALLET_ADDRESS')
 
-# Remix'dan olingan ABI to'liq list ko'rinishida
+# Remix’dan olingan contract ABI (public, xavfsiz)
 contract_abi = [
     {
         "inputs": [{"internalType": "bytes32", "name": "docHash", "type": "bytes32"}],
@@ -38,7 +38,6 @@ w3 = Web3(Web3.HTTPProvider(INFURA_URL))
 contract = w3.eth.contract(address=CONTRACT_ADDRESS, abi=contract_abi)
 
 def save_hash_to_blockchain(hash_value):
-    # Bu yerda hash_value = '0x...' ko'rinishida bo'lishi kerak
     tx = contract.functions.addDocumentHash(hash_value).build_transaction({
         'from': WALLET_ADDRESS,
         'nonce': w3.eth.get_transaction_count(WALLET_ADDRESS),
