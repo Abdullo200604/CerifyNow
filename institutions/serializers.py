@@ -17,11 +17,16 @@ class InstitutionSerializer(serializers.ModelSerializer):
         ]
 
 class CertificateSerializer(serializers.ModelSerializer):
-    institution = InstitutionSerializer(read_only=True)
-    student = UserSerializer(read_only=True)
+    qr_code_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Certificate
         fields = [
-            'id', 'institution', 'student', 'file', 'hash', 'qr_code',
+            'id', 'institution', 'student', 'file', 'hash', 'qr_code', 'qr_code_url',
             'document_type', 'issued_date', 'description', 'is_verified', 'created_at'
         ]
+
+    def get_qr_code_url(self, obj):
+        if obj.qr_code and hasattr(obj.qr_code, 'url'):
+            return obj.qr_code.url
+        return None

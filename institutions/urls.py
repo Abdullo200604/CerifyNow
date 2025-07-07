@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     InstitutionListCreateAPIView,
     CertificateListCreateAPIView,
-    CertificateDetailAPIView
+    CertificateDetailAPIView,
 )
 
 urlpatterns = [

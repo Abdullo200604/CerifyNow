@@ -1,147 +1,110 @@
-# CerifyNow
+# CerifyNow — Sertifikatlarni blokcheyn asosida boshqarish platformasi
 
-CerifyNow is a modern platform for **verifying and certifying educational documents** (diplomas, certificates, honorary awards) issued by educational institutions, using the Ethereum blockchain. This ensures documents are **tamper-proof, publicly auditable, and easily verified** using QR codes.
+[![Made with Django](https://img.shields.io/badge/Python-Django-green)](https://www.djangoproject.com/)
+[![Blockchain](https://img.shields.io/badge/Blockchain-Ethereum-blue)](https://ethereum.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
----
+## 📝 Loyihaning qisqacha tavsifi
 
-## 🚀 Features
-
-- **Institution registration** and approval workflow (admin panel)
-- **Document hash generation and storage** on Ethereum blockchain
-- **QR code generation** for each document hash (for easy verification)
-- **REST API** for integration with web and mobile applications
-- **Blockchain verification**: instantly check document authenticity by hash or QR
-- **Secure, scalable, and future-proof** architecture
+CerifyNow — bu tashkilotlar tomonidan berilgan elektron sertifikatlarni blokcheyn asosida yaratish, saqlash va tekshirish imkonini beruvchi platforma. Har bir hujjat (diplom, sertifikat va boshqalar) hash orqali blokcheynga yoziladi va avtomatik QR-kod yaratiladi.
 
 ---
 
-## ⚙️ Technologies Used
+## 🔥 Asosiy imkoniyatlar
 
-- **Backend**: Django, Django REST Framework, python-dotenv, Web3.py
-- **Blockchain**: Solidity smart contract (Ethereum Sepolia or Mainnet), Infura
-- **Database**: SQLite (for development, can switch to PostgreSQL)
-- **Others**: qrcode, Pillow (for QR code), dotenv
-- **Frontend**: (Optional) React/Vue/Next.js (not included in this repo)
-
----
-
-## 🛠️ Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Abdullo200604/CerifyNow.git
-cd CerifyNow/root
-2. Install requirements
-bash
-Copy
-Edit
-python -m venv .venv
-source .venv/bin/activate    # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-3. Prepare your environment
-Create a .env file (see .env.example for the template):
-
-env
-Copy
-Edit
-INFURA_URL=https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID
-WALLET_ADDRESS=0xYourWalletAddress
-PRIVATE_KEY=your_private_key
-CONTRACT_ADDRESS=0xYourContractAddress
-Never commit your actual .env file!
-
-4. Run migrations
-bash
-Copy
-Edit
-python manage.py migrate
-5. Create superuser
-bash
-Copy
-Edit
-python manage.py createsuperuser
-6. Run development server
-bash
-Copy
-Edit
-python manage.py runserver
-7. (Optional) Test blockchain integration
-See institutions/blockchain_utils.py for functions like save_hash_to_blockchain.
-
-📦 Project Structure
-bash
-Copy
-Edit
-CerifyNow/
- └── root/
-     ├── institutions/
-     │    ├── models.py
-     │    ├── blockchain_utils.py
-     │    ├── signals.py
-     │    ├── ...
-     ├── users/
-     ├── manage.py
-     ├── .env.example
-     ├── requirements.txt
-     ├── README.md
-     └── ...
-🔐 Security
-DO NOT COMMIT your actual .env file or private keys.
-
-Smart contract ABI is public and can be stored in code.
-
-All sensitive keys should be kept private and rotated periodically.
-
-📄 License
-This project is open-source under the MIT License.
-
-🤝 Contributing
-Pull requests are welcome! Please fork the repository and submit a PR.
-
-📬 Contact
-For questions or partnership requests, please open an issue or contact the maintainer.
-
-yaml
-Copy
-Edit
+- Tashkilotlar va foydalanuvchilarni ro‘yxatdan o‘tkazish va boshqarish
+- Sertifikatlarni (hujjatlarni) yuklash va saqlash
+- Har bir hujjatning SHA256 xashi avtomatik hisoblanadi
+- Hash qiymati Ethereum (Sepolia yoki Mainnet) blokcheyniga yoziladi
+- QR-kod avtomatik generatsiya qilinadi (hujjat hash uchun)
+- REST API va admin panel orqali boshqarish
 
 ---
 
-## **O‘ZBEKCHA QISQA VARIANT (LOZIM BO‘LSA)**
+## 🚀 Texnologiyalar
 
-```markdown
-# CerifyNow
-
-CerifyNow — bu ta’lim muassasalari tomonidan berilgan diplom, sertifikat, faxriy yorliqlarni **blokcheyn orqali ishonchli tasdiqlash va tekshirish** platformasi.
-
----
-
-## Asosiy imkoniyatlar
-
-- Hujjat (PDF yoki boshqa) hashini blokcheynga yozish
-- Har bir hujjat uchun QR kod yaratish
-- Django va DRF asosida REST API
-- Foydalanuvchi ro‘yxatidan o‘tishi va admin tasdiqlash
-- Tez, himoyalangan va zamonaviy arxitektura
+- Backend: Python, Django, Django REST Framework
+- Blockchain: Ethereum, Web3.py, Infura/Google Blockchain RPC
+- Database: SQLite (develop), PostgreSQL (production uchun moslash mumkin)
+- QR-kod: qrcode, Pillow
 
 ---
 
-## O‘rnatish
+## ⚡️ O‘rnatish va ishga tushirish
 
-1. **Repository’ni klon qiling**  
-2. **`requirements.txt` bo‘yicha o‘rnatish**  
-3. **`.env.example` asosida `.env` fayl yarating**  
-4. **Migrate va createsuperuser**  
-5. **`runserver` bilan loyihani ishga tushiring**
+1. Repository’ni klon qiling
+   
+    git clone https://github.com/Abdullo200604/CerifyNow.git
+    cd CerifyNow/root
+    
+2. Virtual environment yarating va faollashtiring
+   
+    python -m venv .venv
+    source .venv/bin/activate   # Linux/Mac
+    .venv\Scripts\activate      # Windows
+    
+3. Kerakli kutubxonalarni o‘rnating
+   
+    pip install -r requirements.txt
+    
+4. .env faylini sozlang
+    - root/.env.example dan nusxa oling va .env deb nomlang
+    - Quyidagilarni to‘ldiring:
+     
+      INFURA_URL=YOUR_BLOCKCHAIN_RPC_URL
+      WALLET_ADDRESS=YOUR_WALLET_ADDRESS
+      PRIVATE_KEY=YOUR_PRIVATE_KEY
+      CONTRACT_ADDRESS=YOUR_CONTRACT_ADDRESS
+      
+5. Ma’lumotlar bazasini yaratish va migration
+   
+    python manage.py makemigrations
+    python manage.py migrate
+    
+6. Superuser yarating
+   
+    python manage.py createsuperuser
+    
+7. Serverni ishga tushiring
+   
+    python manage.py runserver
+    
+---
+
+## 📦 API endpointlar (namuna)
+
+| Yo‘l                | Metod | Maqsad                   |
+|---------------------|-------|--------------------------|
+| /api/institutions/ | GET/POST  | Tashkilotlar ro‘yxati/yaratish |
+| /api/certificates/ | GET/POST  | Sertifikatlar ro‘yxati/yaratish|
+| /api/documents/    | GET/POST  | Hujjatlarni boshqarish        |
 
 ---
 
-## Muhim: `.env` faylingizni hech qachon GitHub’ga joylamang!  
-Maxfiy ma’lumotlar xavfsizligini ta’minlang.
+## ⚙️ Foydalanish bo‘yicha qo‘llanma
+
+1. Admin panel: http://localhost:8000/admin/
+2. Institutions, Certificate, Document qo‘shish
+3. Har bir yangi hujjat uchun:
+    - Hash hisoblanadi
+    - Hash blokcheynga yoziladi
+    - QR-code generatsiya qilinadi
 
 ---
 
-## Hamkorlik va savollar uchun issue yoki pull request yuboring.
+## 🤝 Hissa qo‘shish
+
+- Fork qiling
+- O‘zgarish kiriting (yangi branch oching)
+- Pull request yuboring
 
 ---
+
+## 🛡️ Litsenziya
+
+MIT (ochiq kod)
+
+---
+
+## 👨🏻‍💻 Muallif
+I And MY Boy, Gril Friends
