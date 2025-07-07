@@ -106,5 +106,8 @@ MIT (ochiq kod)
 
 ---
 
-## 👨🏻‍💻 Muallif
-I And MY Boy, Gril Friends
+## 👨🏻‍💻 Mualliflar
+
+- Abdulloh Arslonov — [@Abdullo200604](https://github.com/Abdullo200604)
+- Jasmina Bobokulova — [@Mis_Jesica](https://github.com/JMJfrds)
+- Abdulmajid Mirmakhmudov — [@Mr.Mirmakhmudov](https://github.com/theMirmakhmudov)
